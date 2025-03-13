@@ -75,7 +75,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className='p-12'>
+      <body className='p-12 h-screen'>
         {children}
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
