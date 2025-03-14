@@ -85,9 +85,9 @@ function RouteComponent() {
                 </>
             ) : (
                 <>
-                 <p>You chose { playerChoice }, Computer chose { computerChoice }</p>
-                 <p>{ getResult ()}</p>
-                 <button className='bg-blue-500 text-white p-2 rounded' onClick={restartGame}>Play again</button>
+                    <p>You chose { playerChoice }, Computer chose { computerChoice }</p>
+                    <p>{ getResult ()}</p>
+                    <button className='bg-blue-500 text-white p-2 rounded' onClick={restartGame}>Play again</button>
                 </>
             )}
         </div>
