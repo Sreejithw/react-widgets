@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as StopwatchImport } from './routes/stopwatch'
+import { Route as RollDiceImport } from './routes/roll-dice'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as IndexImport } from './routes/index'
 
@@ -20,6 +21,12 @@ import { Route as IndexImport } from './routes/index'
 const StopwatchRoute = StopwatchImport.update({
   id: '/stopwatch',
   path: '/stopwatch',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RollDiceRoute = RollDiceImport.update({
+  id: '/roll-dice',
+  path: '/roll-dice',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RockPaperScissorsImport
       parentRoute: typeof rootRoute
     }
+    '/roll-dice': {
+      id: '/roll-dice'
+      path: '/roll-dice'
+      fullPath: '/roll-dice'
+      preLoaderRoute: typeof RollDiceImport
+      parentRoute: typeof rootRoute
+    }
     '/stopwatch': {
       id: '/stopwatch'
       path: '/stopwatch'
@@ -68,12 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/roll-dice': typeof RollDiceRoute
   '/stopwatch': typeof StopwatchRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/roll-dice': typeof RollDiceRoute
   '/stopwatch': typeof StopwatchRoute
 }
 
@@ -81,27 +97,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/roll-dice': typeof RollDiceRoute
   '/stopwatch': typeof StopwatchRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/rock-paper-scissors' | '/stopwatch'
+  fullPaths: '/' | '/rock-paper-scissors' | '/roll-dice' | '/stopwatch'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/rock-paper-scissors' | '/stopwatch'
-  id: '__root__' | '/' | '/rock-paper-scissors' | '/stopwatch'
+  to: '/' | '/rock-paper-scissors' | '/roll-dice' | '/stopwatch'
+  id: '__root__' | '/' | '/rock-paper-scissors' | '/roll-dice' | '/stopwatch'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
+  RollDiceRoute: typeof RollDiceRoute
   StopwatchRoute: typeof StopwatchRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
+  RollDiceRoute: RollDiceRoute,
   StopwatchRoute: StopwatchRoute,
 }
 
@@ -117,6 +136,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/rock-paper-scissors",
+        "/roll-dice",
         "/stopwatch"
       ]
     },
@@ -125,6 +145,9 @@ export const routeTree = rootRoute
     },
     "/rock-paper-scissors": {
       "filePath": "rock-paper-scissors.tsx"
+    },
+    "/roll-dice": {
+      "filePath": "roll-dice.tsx"
     },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
